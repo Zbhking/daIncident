@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/iconfont.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" href="js/bootstrap/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -29,8 +30,62 @@
             </form>
         </div>
 
-    </div> 
+    </div>
 
+    <!-- 模态框 -->
+    <!-- Modal -->
+    <div class="modal fade myModal-box" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">提示</h4>
+                </div>
+                <div class="modal-body modal-title-bd">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary btn-zd">知道</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/jquery-1.12.4.min.js"></script>
+    <!-- 引入bootstrap.js -->
+    <script src="./js/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            $('.input_sub').click(function (e) {
+                e.preventDefault();
+                var text = $('.input_txt').val().trim();
+                var password = $('.input_pass').val().trim();
+                if (text == '' || password == '') {
+                    $('#myModal').modal();
+                    $('.modal-title-bd').text('账号和密码不能为空');
+                    return;
+                };
+                $.ajax({
+                    url: 'https://autumnfish.cn/big/admin/login',
+                    type: 'post',
+                    data: {
+                        user_name: text,
+                        password: password
+
+                    },
+                    success: function (lgData) {
+                        if (lgData.code == 400) {
+                            $('#myModal').modal();
+                            $('.modal-title-bd').text('账号或密码错误，请重新输入');
+                        } else if (lgData.code == 200) {
+                            window.location.href = 'index.html';
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
