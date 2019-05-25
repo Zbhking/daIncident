@@ -72,7 +72,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default btn-exit" data-dismiss="modal">确定</button>
-                    <button type="button" class="btn btn-primary btn-zd">知道</button>
+                    <button type="button" class="btn btn-primary btn-zd">取消</button>
                 </div>
             </div>
         </div>
@@ -131,10 +131,25 @@
     <script>
         $(function () {
             $('.icon-btn').parent().click(function () {
+                $('#myModal').css('display', 'block');
+                $('.modal-backdrop').show();
                 $('#myModal').modal();
-                $(".modal-title-bd").text('你确定退出当前账号？')
-                $('.btn-exit').click(function () {
-                    window.location.href = './login.html';
+                $.ajax({
+                    url: 'https://autumnfish.cn/big/admin/logout',
+                    type: 'post',
+                    success: function (eData) {
+                        console.log(eData);
+                        $(".modal-title-bd").text('你确定退出当前账号？')
+                        $('.btn-exit').click(function () {
+                            if (eData.code == 200) {
+                                window.location.href = './login.html';
+                            }
+                        });
+                    }
+                });
+                $('.btn-zd').click(function () {
+                    $('#myModal').css('display', 'none');
+                    $('.modal-backdrop').hide();
                 });
             });
         });
