@@ -165,6 +165,8 @@
                     if (zcData.code == 200) {
                         $('.user_info i').text(zcData.data.nickname);
                         $('.user_info img').attr('src', zcData.data.user_pic);
+                        //右边
+                        $('.user_center_link img').attr('src', zcData.data.user_pic);
                     }
                 }
             });

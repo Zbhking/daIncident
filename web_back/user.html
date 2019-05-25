@@ -71,24 +71,53 @@
         请求方式：get
         请求参数：无
         返回数据：
+        编辑用户信息
+        请求地址：https://autumnfish.cn/big32/admin/userinfo_edit
+        请求方式：post
+        请求参数：使用formdata提交
         */
         $(function () {
-            $.ajax({
-                url: 'https://autumnfish.cn/big32/admin/userinfo_get',
-                type: 'get',
-                success: function (baData) {
-                    console.log(baData);
-                    for (const key in baData.data) {
-                        $('input.' + key).val(baData.data[key]);
+            function fromAjax() {
+                $.ajax({
+                    url: 'https://autumnfish.cn/big32/admin/userinfo_get',
+                    type: 'get',
+                    success: function (baData) {
+                        // console.log(baData);
+                        if (baData.code == 200) {
+                            for (const key in baData.data) {
+                                $('input.' + key).val(baData.data[key]);
+                            }
+                            $('.user_pic').attr('src', baData.data.user_pic);
+                        }
                     }
-                    $('.user_pic').attr('src', baData.data.user_pic);
-                }
-            });
+                });
+            };
+            fromAjax();
+            //上传头像
             $('#exampleInputFile').change(function () {
                 var file = this.files[0];
                 console.log(file);
                 var url = URL.createObjectURL(file);
                 $(this).prev().attr('src', url);
+            });
+            //修改信息
+            $('.btn-success').click(function (e) {
+                e.preventDefault();
+                var formData = new FormData($('form')[0]);
+                console.log(formData);
+                $.ajax({
+                    url: 'https://autumnfish.cn/big32/admin/userinfo_edit',
+                    type: 'post',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (bData) {
+                        console.log(bData);
+                        if (bData.code == 200) {
+                            fromAjax();
+                        }
+                    }
+                });
             });
         });
     </script>
