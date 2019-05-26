@@ -494,9 +494,15 @@
         oColumn.setOption(oColumnopt);
     </script>
     <script>
-        /*请求地址：https://autumnfish.cn/big32/admin/article_count
-        请求方式：get*/
+        /*文章数量数量统计
+        请求地址：https://autumnfish.cn/big32/admin/article_count
+        请求方式：get
+        评论数量统计
+        请求地址：https://autumnfish.cn/big32/admin/comment_count
+        请求方式：get
+        */
         $(function () {
+            // 文章数量数量统计
             $.ajax({
                 url: 'https://autumnfish.cn/big32/admin/article_count',
                 type: 'get',
@@ -505,6 +511,18 @@
                     if (backData.code == 200) {
                         $('.spannel-amount em').text(backData.data.all_count);
                         $('.spannel-day em').text(backData.data.day_count);
+                    }
+                }
+            });
+            // 评论数量统计
+            $.ajax({
+                url: 'https://autumnfish.cn/big32/admin/comment_count',
+                type: 'get',
+                success: function (plData) {
+                    console.log(plData);
+                    if (plData.code == 200) {
+                        $('.scolor02 em').text(plData.data.all_count);
+                        $('.scolor03 em').text(plData.data.day_count);
                     }
                 }
             });
