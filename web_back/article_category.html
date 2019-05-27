@@ -142,29 +142,32 @@
     </script>
     <script>
         /*
-        新增文章类别
+        1.新增文章类别
         请求地址：https://autumnfish.cn/big32/admin/category_add
         请求方式：post
-        文章类别搜索
+        2.文章类别搜索
         请求地址：https://autumnfish.cn/big32/admin/category_search
         请求方式：get
-        删除文章类别
+        3.删除文章类别
         请求地址：https://autumnfish.cn/big32/admin/category_delete
         请求方式：post
+        4.编辑文章类别
+        请求地址：https://autumnfish.cn/big32/admin/category_edit
+        请求方式：post
         */
+        function edgAjax() {
+            $.ajax({
+                url: 'https://autumnfish.cn/big32/admin/category_search',
+                type: 'get',
+                success: function (hData) {
+                    console.log(hData);
+                    var html = template('edg', hData);
+                    $('.category_table tbody').html(html);
+                }
+            });
+        }
         $(function () {
 
-            function edgAjax() {
-                $.ajax({
-                    url: 'https://autumnfish.cn/big32/admin/category_search',
-                    type: 'get',
-                    success: function (hData) {
-                        console.log(hData);
-                        var html = template('edg', hData);
-                        $('.category_table tbody').html(html);
-                    }
-                });
-            }
             edgAjax();
             //新增类别
             $('#model_add').click(function () {
@@ -184,7 +187,6 @@
                 });
                 $('#addModal').modal('hide');
             });
-
         });
         //删除文章类别
         function deleteTr(sum) {
@@ -196,8 +198,13 @@
                 },
                 success: function (dtData) {
                     console.log(dtData);
+                    edgAjax();
                 }
             });
+        }
+
+        function editTr() {
+
         }
     </script>
 
