@@ -305,7 +305,7 @@
         $(function () {
             //文章搜索
             $.ajax({
-                url: 'https://autumnfish.cn/big32/admin/search',
+                url: 'http://localhost:8000/admin/search',
                 type: 'get',
                 success: function (scData) {
                     console.log(scData);
@@ -313,9 +313,9 @@
                     $('tbody').html(html);
                 }
             });
-
+            //文章类别
             $.ajax({
-                url: 'https://autumnfish.cn/big32/admin/category_search',
+                url: 'http://localhost:8000/admin/category_search',
                 type: 'get',
                 success: function (lbData) {
                     console.log(lbData);

@@ -246,25 +246,25 @@
     </script>
     <script>
         /*1.文章数量数量统计
-        请求地址：https://autumnfish.cn/big32/admin/article_count
+        请求地址：http://localhost:8000/admin/article_count
         请求方式：get
         2.评论数量统计
-        请求地址：https://autumnfish.cn/big32/admin/comment_count
+        请求地址：http://localhost:8000/admin/comment_count
         请求方式：get
         3.月新增文章数
-        请求地址：https://autumnfish.cn/big32/admin/month_article_count
+        请求地址：http://localhost:8000/admin/month_article_count
         请求方式：get
         4.各类型文章数量统计
-        请求地址：https://autumnfish.cn/big32/admin/article_category_count
+        请求地址：http://localhost:8000/admin/article_category_count
         请求方式：get
         5.月文章访问量
-        请求地址：https://autumnfish.cn/big32/admin/article_category_visit
+        请求地址：http://localhost:8000/admin/article_category_visit
         请求方式：post
         */
         $(function () {
             // 文章数量数量统计
             $.ajax({
-                url: 'https://autumnfish.cn/big32/admin/article_count',
+                url: 'http://localhost:8000/admin/article_count',
                 type: 'get',
                 success: function (backData) {
                     // console.log(backData);
@@ -277,7 +277,7 @@
 
             // 评论数量统计
             $.ajax({
-                url: 'https://autumnfish.cn/big32/admin/comment_count',
+                url: 'http://localhost:8000/admin/comment_count',
                 type: 'get',
                 success: function (plData) {
                     // console.log(plData);
@@ -290,7 +290,7 @@
 
             // 月新增文章数
             $.ajax({
-                url: 'https://autumnfish.cn/big32/admin/month_article_count',
+                url: 'http://localhost:8000/admin/month_article_count',
                 type: 'get',
                 success: function (zwData) {
                     // console.log(zwData.data);
@@ -397,7 +397,7 @@
 
             //各类型文章数量统计
             $.ajax({
-                url: 'https://autumnfish.cn/big32/admin/article_category_count',
+                url: 'http://localhost:8000/admin/article_category_count',
                 type: 'get',
                 success: function (lxData) {
                     // console.log(lxData);
@@ -483,7 +483,7 @@
 
             //月文章访问量
             $.ajax({
-                url: 'https://autumnfish.cn/big32/admin/article_category_visit',
+                url: 'http://localhost:8000/admin/article_category_visit',
                 type: 'get',
                 success: function (yData) {
                     // console.log(yData);

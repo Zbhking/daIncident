@@ -82,7 +82,7 @@
     <script>
         /*
         1.发布文章
-        请求地址：https://autumnfish.cn/big32/admin/article_publish
+        请求地址：http://localhost:8000/admin/article_publish
         请求方式：post
         */
         $(function () {
@@ -98,7 +98,7 @@
                 var formData = new FormData($('form')[0]);
                 console.log(formData);
                 $.ajax({
-                    url: 'https://autumnfish.cn/big32/admin/article_publish',
+                    url: 'http://localhost:8000/admin/article_publish',
                     type: 'post',
                     data: formData,
                     contentType: false,

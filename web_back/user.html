@@ -67,19 +67,19 @@
     <script>
         /*
         21、获取用户信息
-        请求地址：https://autumnfish.cn/big32/admin/userinfo_get
+        请求地址：http://localhost:8000/admin/userinfo_get
         请求方式：get
         请求参数：无
         返回数据：
         编辑用户信息
-        请求地址：https://autumnfish.cn/big32/admin/userinfo_edit
+        请求地址：http://localhost:8000/admin/userinfo_edit
         请求方式：post
         请求参数：使用formdata提交
         */
         $(function () {
             function fromAjax() {
                 $.ajax({
-                    url: 'https://autumnfish.cn/big32/admin/userinfo_get',
+                    url: 'http://localhost:8000/admin/userinfo_get',
                     type: 'get',
                     success: function (baData) {
                         // console.log(baData);
@@ -106,7 +106,7 @@
                 var formData = new FormData($('form')[0]);
                 console.log(formData);
                 $.ajax({
-                    url: 'https://autumnfish.cn/big32/admin/userinfo_edit',
+                    url: 'http://localhost:8000/admin/userinfo_edit',
                     type: 'post',
                     data: formData,
                     contentType: false,
