@@ -41,11 +41,6 @@
                     <label for="inputEmail3" class="col-sm-2 control-label">文章类别：</label>
                     <div class="col-sm-4">
                         <select class="form-control" name="pid">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
                         </select>
                     </div>
                 </div>
@@ -79,6 +74,12 @@
             </form>
         </div>
     </div>
+    <script src="./js/template-web.js"></script>
+    <script id="rmg" type="text/html">
+        {{each data}}
+        <option value="{{$value.id}}">{{$value.name}}</option>
+        {{/each}}
+    </script>
     <script>
         /*
         1.发布文章
@@ -107,6 +108,19 @@
                         console.log(frData);
                     }
                 });
+            });
+
+            //获取文章类别数据
+            $.ajax({
+                url: 'http://localhost:8000/admin/category_search',
+                type: 'get',
+                success: function (lbData) {
+                    // console.log(lbData);
+                    if (lbData.code == 200) {
+                        var html = template('rmg', lbData);
+                        $('.form-control').append(html);
+                    }
+                }
             });
         });
     </script>
