@@ -307,6 +307,11 @@
         $(function () {
             var mypage = 1;
             //封装
+            var $pagination = $('.pagination ');
+
+            //自己定义总页数
+            var myTotalPages = 5;
+
             function scAjax() {
                 $.ajax({
                     url: 'http://localhost:8000/admin/search',
@@ -321,6 +326,19 @@
                         console.log(scData);
                         var html = template('sc', scData);
                         $('tbody').html(html);
+                        var totalPages = scData.totalPage
+                        if (myTotalPages != totalPages) {
+                            // 总页数变了
+                            myTotalPages = totalPages
+                            // 写死为第一页即可
+                            $pagination.twbsPagination('destroy')
+                            $pagination.twbsPagination(
+                                $.extend({}, defaultOpts, {
+                                    startPage: 1,
+                                    totalPages: totalPages
+                                })
+                            )
+                        }
                     }
                 });
             }
@@ -346,8 +364,8 @@
                 }
             });
             scAjax();
-            $('.pagination').twbsPagination({
-                totalPages: 35,
+            var defaultOpts = {
+                totalPages: myTotalPages,
                 visiblePages: 7,
                 first: '首页',
                 last: '最后一页',
@@ -362,7 +380,7 @@
                     // 重新调用获取文章数据的方法
                     scAjax();
                 }
-            })
+            }
 
             //删除文章
             window.deleteTr = function (id) {
