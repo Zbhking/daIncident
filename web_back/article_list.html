@@ -274,7 +274,7 @@
             <td class="text-center">{{$value.date}}</td>
             <td class="text-center">{{$value.state}}</td>
             <td class="text-center">
-                <a href="article_edit.html" class="btn btn-default btn-xs">编辑</a>
+                <a href="article_edit.html?id={{$value.id}}&type={{$value.type}}" class="btn btn-default btn-xs">编辑</a>
                 <a href="javascript:deleteTr({{$value.id}});" class="btn btn-danger btn-xs">删除</a>
             </td>
         </tr>
@@ -356,7 +356,7 @@
                 url: 'http://localhost:8000/admin/category_search',
                 type: 'get',
                 success: function (lbData) {
-                    console.log(lbData);
+                    // console.log(lbData);
                     if (lbData.code == 200) {
                         var html = template('fl', lbData);
                         $('#selCategory').append(html);
@@ -391,7 +391,7 @@
                         id: id
                     },
                     success: function (deData) {
-                        console.log(deData);
+                        // console.log(deData);
                         if (deData.code == 200) {
                             scAjax();
                         }
